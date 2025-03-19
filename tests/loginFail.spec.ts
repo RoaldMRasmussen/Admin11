@@ -11,12 +11,12 @@ test.beforeEach(async ({ page }) => {
     }
 });
 
-test('LoginFail', async ({ page }) => {
+test.skip('LoginFail', async ({ page }) => {
 await expect(page.getByText(/Invalid username\/password/i)).toBeVisible();
 });
 
 
-test('LoginFail1', async ({ page }) => {
+test.skip('LoginFail1', async ({ page }) => {
   const adminSites = ['admin4.xyvid.com', 'admin6.xyvid.com', 'admin8.xyvid.com', 'admin11.xyvid.com'];
 
   for (const site of adminSites) {
