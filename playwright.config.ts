@@ -32,7 +32,7 @@ export default defineConfig({
     trace: 'on-first-retry',
     
     //permissions: ["clipboard-read", "clipboard-write"],
-    permissions: ["clipboard-read"],
+    //permissions: ["clipboard-read"],
   },
 
   /* Configure projects for major browsers */
