@@ -9,10 +9,11 @@
   "type": "commonjs",
   "description": "",
   "devDependencies": {
-    "@playwright/test": "^1.51.0",
+    "@playwright/test": "^1.51.1",
     "@types/node": "^22.13.10"
   },
   "dependencies": {
+    "18": "^0.0.0",
     "uuid": "^11.1.0"
   }
 }
