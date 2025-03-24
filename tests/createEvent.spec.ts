@@ -1,16 +1,18 @@
 // importCreation.spec.ts
 import { test, expect } from '@playwright/test';
-import { newEvent } from './createEvent';
+import { logIn } from './logIn';
+const { v4: uuidv4 } = require('uuid');
 
-newEvent(test, (uuidv4) => {
-  test('FullEvent', async ({ page }) => {
+logIn(test, (test, site) => {
+  test(`newEvent for ${site}`, async ({ page }) => {
     test.setTimeout(60000);
 
     // Click on Create New Event button
     await page.getByRole('button', { name: '+ New Event' }).click();
 
     // Fill in the Event Name field
-    await page.getByRole('textbox', { name: 'Event Name' }).fill(`RMRtest${uuidv4()}`);
+    const eventName = `RMRtest${uuidv4()}`;
+    await page.getByRole('textbox', { name: 'Event Name' }).fill(eventName);
     await page.getByText('Create The settings above').click();
     await expect(page.locator('text=The event folder directory is invalid')).toBeVisible();
 
@@ -22,7 +24,6 @@ newEvent(test, (uuidv4) => {
     await expect(page.locator('text=The vanity url is required')).toBeVisible();
 
     // Fill in the Event Name and Vanity URL
-    const eventName = `RMRtest${uuidv4()}`;
     const trimmedVanityURL = eventName.slice(0, 30);
     await page.locator('#txt_vanityURL').fill(trimmedVanityURL);
     await page.locator('#txt_vanityURL').press('Enter');
@@ -47,9 +48,14 @@ newEvent(test, (uuidv4) => {
     await page.getByRole('link', { name: ' Increment Hour' }).click();
     await page.locator('#txt_endTimeGroup > .input-group-addon > .glyphicon').click();
 
+    // Turn SSO on
+    await page.locator('#cmb_SAMLAuth').selectOption('true');
+
+    // Turn Hybrid on
+    await page.locator('#cmb_hybrid').selectOption('1');
+
     // Finalize the event creation
     await page.getByText('Create The settings above').click();
     await expect(page.getByRole('tab', { name: 'Content' })).toBeVisible();
-    await page.getByRole('link', { name: 'Events' }).click();
   });
 });

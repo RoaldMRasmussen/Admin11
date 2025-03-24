@@ -57,20 +57,27 @@ for (const site of adminSites) {
     });
 
     test('SelectDates', async ({ page }) => {
+
+        // Select Start Date
       await page.locator('#txt_startDateGroup span').first().click();
       await page.locator('.day.active.today').click();
       await page.locator('#txt_startDate').press('Enter');
+
+      // Select Start Time
       await page.locator('#txt_openTimeGroup span').nth(1).click();
       await page.locator('#txt_openTimeGroup > .input-group-addon').click();
       await page.locator('#txt_startTimeGroup span').nth(1).click();
       await page.getByRole('link', { name: ' Increment Minutes' }).click();
       await page.locator('#txt_startTimeGroup > .input-group-addon > .glyphicon').click();
+
+        // End time
       await page.locator('#txt_endTime').click();
       await page.locator('#txt_endTimeGroup span').nth(1).click();
       await page.getByRole('link', { name: ' Increment Hour' }).click();
       await page.locator('#txt_endTimeGroup > .input-group-addon > .glyphicon').click();
     });
-    test('TurnHybridOn', async ({ page }) => {
+    test('TurnHybrid-SSO-On', async ({ page }) => {
+      await page.locator('#cmb_SAMLAuth').selectOption('true');
       await page.locator('#cmb_hybrid').selectOption('1');
     }); 
 
