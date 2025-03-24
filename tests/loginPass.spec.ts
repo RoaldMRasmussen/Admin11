@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test('LoginSuccess4-6', async ({ page }) => {
+test('LoginSuccess', async ({ page }) => {
   test.setTimeout(60000);
   
     const adminSites = ['admin4.xyvid.com', 'admin6.xyvid.com', 'admin8.xyvid.com', 'admin11.xyvid.com'];
