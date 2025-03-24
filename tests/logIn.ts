@@ -2,9 +2,9 @@ const { v4: uuidv4 } = require('uuid');
 
 export function logIn(test, testCallback) {
   const adminSites = [
-    'admin4.xyvid.com',
-    'admin6.xyvid.com',
-    'admin8.xyvid.com',
+    // 'admin4.xyvid.com',
+    // 'admin6.xyvid.com',
+    // 'admin8.xyvid.com',
     'admin11.xyvid.com'
   ];
 

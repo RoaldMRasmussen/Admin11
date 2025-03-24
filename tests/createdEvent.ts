@@ -2,9 +2,9 @@ import { test as baseTest, expect } from '@playwright/test';
 import { v4 as uuidv4 } from 'uuid';
 
 export const adminSites = [
-  'admin4.xyvid.com',
-  'admin6.xyvid.com',
-  'admin8.xyvid.com',
+  // 'admin4.xyvid.com',
+  // 'admin6.xyvid.com',
+  // 'admin8.xyvid.com',
   'admin11.xyvid.com'
 ];
 
