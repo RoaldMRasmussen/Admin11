@@ -1,6 +1,6 @@
 // importCreation.spec.ts
 import { test, expect } from '@playwright/test';
-import { logIn } from '../HelperFiles/logIn';
+import { logIn } from '../logIn';
 const { v4: uuidv4 } = require('uuid');
 
 logIn(test, (test, site) => {
