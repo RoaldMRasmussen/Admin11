@@ -1,12 +1,23 @@
 import { test, expect } from '@playwright/test';
 const { v4: uuidv4 } = require('uuid');
+import { adminSites } from '../HelperFiles/createdEvent';
+import dotenv from 'dotenv';
 
-const adminSites = [
-  // 'admin4.xyvid.com', 
-  // 'admin6.xyvid.com', 
-  // 'admin8.xyvid.com', 
-  'admin11.xyvid.com'
-];
+interface EnvVariables {
+  USER_NAME: string;
+  PASSWORD: string;
+}
+// Load environment variables from .env file
+dotenv.config();
+
+// Get environment variables
+const env: EnvVariables = {
+ USER_NAME: process.env.USER_NAME || '',
+PASSWORD: process.env.PASSWORD || ''
+};
+  if (!env.USER_NAME || !env.PASSWORD) {
+    throw new Error('USER_NAME and PASSWORD environment variables must be set');
+  }
 
 for (const site of adminSites) {
   test.describe(`Event Settings ${site}`, () => {
@@ -14,8 +25,8 @@ for (const site of adminSites) {
       test.setTimeout(60000);
       // Log in, navigate to the calendar and click on the New Event button
       await page.goto(`https://${site}`);
-      await page.getByRole('textbox', { name: 'Username' }).fill(username);
-      await page.getByRole('textbox', { name: 'Password' }).fill(password);
+      await page.getByRole('textbox', { name: 'Username' }).fill(env.USER_NAME);
+      await page.getByRole('textbox', { name: 'Password' }).fill(env.PASSWORD);
       await page.getByRole('button', { name: 'Continue' }).click();
       await page.getByText('Event Management').click();
       await page.getByRole('button', { name: ' Calendar View' }).click();
