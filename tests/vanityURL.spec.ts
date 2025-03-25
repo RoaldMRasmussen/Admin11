@@ -1,24 +1,6 @@
 import { test, expect } from '@playwright/test';
-import dotenv from 'dotenv';
 import { adminSites } from '../HelperFiles/createdEvent';
-
-// Load environment variables from .env file
-dotenv.config();
-
-interface EnvVariables {
-  USER_NAME: string;
-  PASSWORD: string;
-}
-
-// Get environment variables
-const env: EnvVariables = {
-  USER_NAME: process.env.USER_NAME || '',
-  PASSWORD: process.env.PASSWORD || ''
-};
-
-if (!env.USER_NAME || !env.PASSWORD) {
-  throw new Error('USER_NAME and PASSWORD environment variables must be set');
-}
+import { ENV } from '../HelperFiles/envHelper';
 
 const { v4: uuidv4 } = require('uuid');
 
@@ -27,8 +9,8 @@ for (const site of adminSites) {
     test.beforeEach(async ({ page }) => {
       test.setTimeout(60000);
       await page.goto(`https://${site}`);
-      await page.getByRole('textbox', { name: 'Username' }).fill(env.USER_NAME);
-      await page.getByRole('textbox', { name: 'Password' }).fill(env.PASSWORD);
+      await page.getByRole('textbox', { name: 'Username' }).fill(ENV.USER_NAME);
+      await page.getByRole('textbox', { name: 'Password' }).fill(ENV.PASSWORD);
       await page.getByRole('button', { name: 'Continue' }).click();
       await page.getByText('Event Management').click();
       await page.getByRole('button', { name: ' Calendar View' }).click();
@@ -46,7 +28,6 @@ for (const site of adminSites) {
       await page.getByText('Create The settings above').click();
       await expect(page.locator('text=The vanity url is required')).toBeVisible();
       await page.getByRole('textbox', { name: 'Event Name' }).fill(`Mytest${uuidv4()}`);
-      await page.getByRole('button', { name: '' }).click();
 
       // Trim the eventName to 30 characters for vanity URL
       const eventName = `Mytest${uuidv4()}`;

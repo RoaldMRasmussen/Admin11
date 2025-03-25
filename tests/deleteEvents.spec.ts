@@ -1,24 +1,7 @@
 import { test } from '@playwright/test';
-import dotenv from 'dotenv';
 import { adminSites } from '../HelperFiles/createdEvent';
+import { ENV } from '../HelperFiles/envHelper';
 
-// Load environment variables from .env file
-dotenv.config();
-
-interface EnvVariables {
-  USER_NAME: string;
-  PASSWORD: string;
-}
-
-// Get environment variables
-const env: EnvVariables = {
-  USER_NAME: process.env.USER_NAME || '',
-  PASSWORD: process.env.PASSWORD || ''
-};
-
-if (!env.USER_NAME || !env.PASSWORD) {
-  throw new Error('USER_NAME and PASSWORD environment variables must be set');
-}
 
 test.describe('Delete Events', () => {
   for (const site of adminSites) {
@@ -26,8 +9,8 @@ test.describe('Delete Events', () => {
       test.beforeEach(async ({ page }) => {
         test.setTimeout(60000);
         await page.goto(`https://${site}`);
-        await page.getByRole('textbox', { name: 'Username' }).fill(env.USER_NAME);
-        await page.getByRole('textbox', { name: 'Password' }).fill(env.PASSWORD);
+        await page.getByRole('textbox', { name: 'Username' }).fill(ENV.USER_NAME);
+        await page.getByRole('textbox', { name: 'Password' }).fill(ENV.PASSWORD);
         await page.getByRole('button', { name: 'Continue' }).click();
         await page.getByText('Event Management').click();
         await page.getByRole('button', { name: ' Calendar View' }).click();
