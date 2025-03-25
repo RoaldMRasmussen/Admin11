@@ -3,9 +3,9 @@ import { test, expect } from '@playwright/test';
 const { v4: uuidv4 } = require('uuid');
 
 const adminSites = [
-  // 'admin4.xyvid.com', 
-  // 'admin6.xyvid.com', 
-  // 'admin8.xyvid.com', 
+  'admin4.xyvid.com', 
+  'admin6.xyvid.com', 
+  'admin8.xyvid.com', 
   'admin11.xyvid.com'];
 
 for (const site of adminSites) {

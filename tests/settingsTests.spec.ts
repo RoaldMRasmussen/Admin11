@@ -14,8 +14,8 @@ for (const site of adminSites) {
       test.setTimeout(60000);
       // Log in, navigate to the calendar and click on the New Event button
       await page.goto(`https://${site}`);
-      await page.getByRole('textbox', { name: 'Username' }).fill('mrasmussen@xyvid.com');
-      await page.getByRole('textbox', { name: 'Password' }).fill('@HaleyAnnika1');
+      await page.getByRole('textbox', { name: 'Username' }).fill(username);
+      await page.getByRole('textbox', { name: 'Password' }).fill(password);
       await page.getByRole('button', { name: 'Continue' }).click();
       await page.getByText('Event Management').click();
       await page.getByRole('button', { name: ' Calendar View' }).click();

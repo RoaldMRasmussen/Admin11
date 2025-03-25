@@ -1,9 +1,9 @@
 import { test } from '@playwright/test';
 
 const adminSites = [
-  // 'admin4.xyvid.com',
-  // 'admin6.xyvid.com',
-  // 'admin8.xyvid.com',
+  'admin4.xyvid.com',
+  'admin6.xyvid.com',
+  'admin8.xyvid.com',
   'admin11.xyvid.com'
 ];
 

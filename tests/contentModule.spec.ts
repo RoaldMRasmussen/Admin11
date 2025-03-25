@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { createdContentModule, adminSites } from './createdEvent';
+import { createdContentModule, adminSites } from '../HelperFiles/createdEvent';
 
 test.describe('EventModules', () => {
   for (const site of adminSites) {
