@@ -1,21 +1,22 @@
 import { test as baseTest, expect } from '@playwright/test';
 import { v4 as uuidv4 } from 'uuid';
+import { ENV } from './envHelper';
 
 export const adminSites = [
-  'admin4.xyvid.com',
-  'admin6.xyvid.com',
-  'admin8.xyvid.com',
+  // 'admin4.xyvid.com',
+  // 'admin6.xyvid.com',
+  // 'admin8.xyvid.com',
   'admin11.xyvid.com'
 ];
 
-export const createdContentModule = (site: string) => async ({ page }) => {
+export const createdContentModule = async (page, site) => {
   // Set timeout at the proper level
   baseTest.setTimeout(60000);
 
   // Log in, navigate to the calendar and click on the New Event button
   await page.goto(`https://${site}`);
-  await page.getByRole('textbox', { name: 'Username' }).fill('mrasmussen@xyvid.com');
-  await page.getByRole('textbox', { name: 'Password' }).fill('@HaleyAnnika1');
+  await page.getByRole('textbox', { name: 'Username' }).fill(ENV.USER_NAME);
+  await page.getByRole('textbox', { name: 'Password' }).fill(ENV.PASSWORD);
   await page.getByRole('button', { name: 'Continue' }).click();
   await page.getByText('Event Management').click();
   await page.getByRole('button', { name: ' Calendar View' }).click();
@@ -61,7 +62,7 @@ export const createdContentModule = (site: string) => async ({ page }) => {
 
   // Finalize creation
   await page.getByText('Create The settings above').click();
-  await expect(page.getByRole('tab', { name: 'Content' })).toBeVisible();
+  await expect(page.locator('#content-tab')).toBeVisible();
   
   return page;
 };

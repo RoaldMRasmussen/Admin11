@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { adminSites } from '../HelperFiles/createdEvent';
+import { adminSites } from '../HelperFiles/newEventHelper';
 import { ENV } from '../HelperFiles/envHelper';
 
 test('LoginSuccess', async ({ page }) => {

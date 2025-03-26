@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 const { v4: uuidv4 } = require('uuid');
-import { adminSites } from '../HelperFiles/createdEvent';
+import { adminSites } from '../HelperFiles/newEventHelper';
 import { ENV } from '../HelperFiles/envHelper';
 
 for (const site of adminSites) {
