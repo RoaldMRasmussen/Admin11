@@ -8,6 +8,7 @@ dotenv.config();
 export const ENV = {
   USER_NAME: process.env.USER_NAME || '',
   PASSWORD: process.env.PASSWORD || '',
+  PASSWORD2: process.env.PASSWORD2 || '',
   FAKE_NAME: process.env.FAKE_NAME || '',
   FAKE_PASSWORD: process.env.FAKE_PASSWORD || ''
 };
