@@ -24,6 +24,20 @@ for (const site of adminSites) {
       await expect(page.locator('text=The event folder directory is invalid')).toBeVisible();
     });
 
+    test('PublishType', async ({ page }) => {
+      // Click on the dropdown to open it
+      await page.locator('#cmb_EventPublishEncode').click();
+
+      // Select the "DualEncode" option
+      await page.locator('#cmb_EventPublishEncode').selectOption({ value: 'DualEncode' });
+
+      // Click on the dropdown to close it
+      await page.locator('#cmb_EventPublishEncode').click();
+
+      // Verify that the "DualEncode" option is selected
+      await expect(page.locator('#cmb_EventPublishEncode')).toHaveValue('DualEncode');
+    });
+
     test('SelectFolder', async ({ page }) => {
       // Select a folder and test alert for empty vanity URL
       await page.getByRole('button', { name: '' }).click();
